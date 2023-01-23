@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<TITLE>{% block title %}{% endblock %}</TITLE>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<script src="HTTPs://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="{{ base_url }}/assets/css/default.css">
+
+		{% if(userID): %}
+
+		<script type="text/javascript">
+			var alarmCount = 0;
+			$(document).ready(function() {
+				//getIssuesCount()
+				//setInterval(function(){ getIssuesCount(); }, 60000);
+			});
+
+			function getIssuesCount() {
+				$.ajax({
+					type: 'GET',
+					url: "{{ base_url }}/issues/getIssuesCount",
+					dataType: 'html',
+					success: function(result){
+						$("#issuesCount").html(result);
+						//$("#main_right").css("display", "block");
+					}
+				})
+				
+			}
+			
+			
+			
+			
+		</script>
+
+		{% endif %}
+
+        {% block head %} {% endblock %}
+		
+	</HEAD>
+	<BODY>
+		<DIV CLASS="parent_container">
+			<DIV CLASS="header_parent">
+				<DIV CLASS="header_logo">
+				
+					<a href="{{ base_url }}"><SPAN><U><B>QEH</B></U>NMS</SPAN></a>
+				
+				</DIV>
+			{% if(userID): %}
+				<div class="notification_parent">
+
+					<div class="notification_alert">
+						<div id="issuesCount" style="float: left; margin-right: 20px; color: #ffffff;"></div>
+						{% print(userID) %}
+						<a href="{{ base_url }}/logout">LOGOUT</a>
+					</div>
+				</div>
+			{% endif %}	
+			</div>
+			<div class="content_parent">
+				{% if(userID): %}
+				<DIV CLASS="left_parent">
+					<DIV CLASS="navigation_parent">
+						<DIV CLASS="general_parent">
+							<SPAN class="navigation_title">
+								General
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/">HOME</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/about">ABOUT</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/documentation">DOCUMENTATION</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/logout">LOGOUT</a>
+							</SPAN>
+						</DIV>
+						<DIV CLASS="status_parent">
+							<SPAN class="navigation_title">
+								Status
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/sites/">SITES</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/cabinets/">CABINETS</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/devices/">DEVICES</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/issues/">ISSUES</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/events/">EVENTS</a>
+							</SPAN>
+						</DIV>
+						{% if(userLevel == 2): %}
+						<DIV CLASS="system_parent">
+							<SPAN class="navigation_title">
+								System
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/configuration/queryDevice">ADD DEVICE</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/processes/">PROCESSES</a>
+							</SPAN>
+							<SPAN class="navigation_entry">
+								<a href="{{ base_url }}/configuration/viewOIDs/">OID MANAGEMENT</a>
+							</SPAN>
+						</DIV>
+						{% endif %}
+					
+						<DIV CLASS="events_parent">
+						
+						</DIV>
+					</DIV>
+				</DIV>	
+				{% endif %}
+				<DIV CLASS="right_parent">
+					<div class="content">
+                        {% block content %} {% endblock %}
+
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+                <DIV style="height: 5px; clear: both; background-color: #4F81BD; position: fixed; bottom: 0; width: 100%;"></DIV>		
+            </DIV>
+        </DIV>	
+    </DIV>
+</BODY>
+</HTML>

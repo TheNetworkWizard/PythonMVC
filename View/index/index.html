@@ -1,0 +1,119 @@
+{% extends "./base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+	<script type="text/javascript">
+		var alarmCount = 0;
+		$(document).ready(function() {
+			jQuery.ajaxSetup({
+			  async: false
+			});			
+			//getIssuesList()
+			//getCampusStatus()
+			
+			//setInterval(function(){ getIssuesList(); }, 60000);
+			//setInterval(function(){ getCampusStatus(); }, 60000);
+		});
+
+		function getIssuesList(){
+			$.ajax({
+				type: "GET",
+				url: "/NMS3/issues/getIssuesList",
+				dataType: 'html',
+				success: function(result){
+					$("#issuesList").html(result);
+				}
+			})
+		}
+
+		function getCampusStatus() {
+			$.ajax({
+				type: "GET",
+				url: "/NMS3/getCampusStatus",
+				dataType: 'html',
+				success: function(result){
+					$("#campusStatus").html(result);
+				}
+			})
+		}
+	</script>
+
+{% endblock %}
+{% block content %}
+	<div id="main_left">
+		<h1>Campus Status</h1>
+
+		<div id="campusStatus">
+			{% for site in devices: %}
+				<div style="float: left; width: 100%;">
+				<h2>{{site}}</h2>
+				
+				{% for location in devices[site].values(): %}
+					{% if(location['device_status'] == 0) %}
+						{% set status = 'red' %}
+					{% elif(location['port_status'] == 0) %}
+						{% set status = '#f4e842' %}
+
+					{% elif(location['device_status'] == None) %}
+						{% set status = '#c0c0c0' %}
+
+					{% else %}
+						
+						{% set status = '#98d25c' %}
+					{% endif %}
+
+					<div style="padding: 0px; padding-bottom: 7px; border: 1px solid #2e3435; float: left; margin-left: 10px;  margin-bottom: 10px; background-color: {{status}};">
+						<div id="{{location['location_description']}}Status" style="  background-color: {{status}}; margin-left: 10px;  margin-top: 6px; margin-right: 10px; float: left;">
+							<a class="cabinetStatus" style="width: 80px; line-height: 40px; text-align: center; color:#575050; letter-spacing: 1px; height: 40px; display: table-cell; font-size: 14px;" href="devices/{{site}}/{{location['location_name']}}">
+								{{location['location_name']}}
+							</a>
+						</div>
+						<div style="clear: both"></div>
+					</div>
+				{% endfor %}
+				</div>
+				<br />
+				<br />
+
+			{% endfor %}
+		</div>
+	</div>
+
+	<div id="main_right">
+		<h1 style=" width: 100%; margin-bottom: 15px;">Outstanding Issues</h1>
+		<div id="issuesList">
+				{% if deviceIssues|length > 0 %}
+                    {% for issue in deviceIssues %}
+                        {% if(issue['device_status'] == 0) %}
+                            <div id="{{ issue['device_name'] }}" style="display: block; float: left; background-color: white;  margin-bottom: 20px; border: 1px solid #2e3435; width: 350px; padding: 10px; margin-left: 20px; clear: both;">
+                                <a href="devices/{{issue['device_site']}}/{{issue['device_location']}}/{{ issue['device_name'] }}"><b>{{ issue['device_name'] }}</b> ({{ issue['device_ip'] }})</a><br />
+                                <div style="margin-top: 0px; margin-left: 20px; float: left; font-size: 14px;">
+                                    <font style="color: Red; font-weight: bold;">Down</font>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        
+                    {% endfor %}
+                {% endif %}
+                {% if interfaceIssues|length > 0 %}
+					{% for issue in interfaceIssues %}
+                        <div id="{{ issue['device_name'] }}" style="display: block; float: left; background-color: white;  margin-bottom: 20px; border: 1px solid #2e3435; width: 350px; padding: 10px; margin-left: 20px; clear: both;">
+                            <a href="devices/{{issue['device_site']}}/{{issue['device_location']}}/{{ issue['device_name'] }}"><b>{{ issue['device_name'] }}</b> ({{ issue['device_ip'] }})</a><br />
+                            {% if(issue['device_status'] == 0) %}
+                                <div style="margin-top: 0px; margin-left: 20px; float: left; font-size: 14px;">
+                                    {{ issue['port_name'] }} - <font style="color: Red; font-weight: bold;">Down</font>
+                                </div>
+                            {% else %}
+                                <div style="margin-top: 0px; margin-left: 20px; float: left; font-size: 14px; font-size: 12px;">
+                                    {{ issue['port_name'] }} - <font style="color: Red; font-weight: bold;">Down</font>
+                                </div>
+                            {% endif %}
+                        
+                        </div>
+                    {% endfor %}
+				{% else %}
+					No issues found
+				{% endif %}
+		</div>
+	</div>
+{% endblock %}

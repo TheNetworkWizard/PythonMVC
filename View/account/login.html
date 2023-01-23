@@ -1,0 +1,40 @@
+{% extends "./base.html" %}
+
+{% block title %} NMS Dashboard {% endblock %}
+
+{% block head %}
+	<STYLE TYPE="text/css">
+		.content {
+			margin-left: -200px;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	FOO
+	<div style="margin: 0px auto; padding: 15px 80px 15px; width: 340px; background-color: rgba(255, 255, 255, 0.97); text-align: center; margin-top: 80px; border: 1px solid #c0c0c0;">
+	
+	<div id="login_logo" style="width: 100%; height: 100px;"></div>
+	
+	<h1 style="font-size: 1.8rem; font-weight: 200; line-height: 1.15; color: rgba(57, 57, 59, 0.87); font-family: CiscoSans, arial, sans-serif;">Log in to QEHNMS</h1>
+
+
+
+		{% if(error) %}
+		<div style="padding: 10px;">
+			<font style="color: red;">{{ error }}</font>
+		</div>
+		{% endif %}
+			
+		<form action="/nmspy/login" method="post" style="margin-top: 50px; margin-bottom: 100px;">
+		<h4><?php echo $msg; ?></h4>
+		<input id="username" class="hint" name="username" value="" size="33" maxlength="105" autocomplete="off" autocorrect="off" autocapitalize="off" tabindex="1" placeholder="Username" type="text" style="background: transparent; padding: 5px 0px; border-bottom: 2px solid #c6c7ca; border-bottom-width: 2px; text-align: center; line-height: 1.4; border-width: 0 0 2px 0; font-weight: 300; width: 100%; font-size: 1.23em; color: rgba(158, 158, 162, 0.87); margin-bottom: 20px;"> 
+		
+		<input id="password" class="hint" name="password" value="" type="password" size="33" maxlength="105" autocomplete="off" autocorrect="off" autocapitalize="off" tabindex="1" placeholder="Password" style="background: transparent; padding: 5px 0px; border-bottom: 2px solid #c6c7ca; border-bottom-width: 2px; text-align: center; line-height: 1.4; border-width: 0 0 2px 0; font-weight: 300; width: 100%; font-size: 1.23em; color: rgba(158, 158, 162, 0.87); margin-bottom: 40px;"> 
+
+		<button  type="submit" name = "login" style="display: inline-block; border: none; background-color: #4F81BD; width: 288px; margin: 40px 0; padding: 14px 16px; cursor: pointer; color: #ffffff; font-size: 1.6rem; text-decoration: none;">Login</button>
+		</form>
+
+		
+	</div>
+{% endblock %}

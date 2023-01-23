@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+{% block title %}Error {{ code }}{% endblock %}
+{% block content %}
+<div style="margin: 0px auto; padding: 15px 80px 15px; width: 340px; background-color: rgba(255, 255, 255, 0.97); text-align: center; margin-top: 80px; border: 1px solid #c0c0c0;">
+	
+    <br />
+    <br />
+    {{ code }} - {{ message }}
+    <br />
+    <br />
+
+    <br /><br />
+    </div>
+{% endblock %}

@@ -1,0 +1,228 @@
+	* {
+		margin: 0px;
+		padding: 0px;	
+		color: #2e3435;
+	}
+
+	body {
+		font-family:"Frutiger";
+		font-size: 13px;
+		background-color: #F4F4F4;
+	}
+
+	a, a:visited {
+		text-decoration: none;
+		color: #2e3435;
+	}
+	
+	
+
+	h1 {
+		margin-bottom: 15px;
+	}
+
+	h2 {
+		margin-bottom: 0px;
+		margin-top: 10px;
+	}
+
+	.indent {
+		margin-left: 20px;
+	}
+
+
+	.parent_container {
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.left_parent {
+		width: 200px;
+		float: left;
+		border-right: 1px dashed;
+		height: 100%;
+		position: fixed;
+	}
+
+	.right_parent {
+		overflow: auto;
+		position: fixed;
+		bottom: 5px;
+		right: 0px;
+		left: 200px;
+		top: 60px;
+		
+	}
+
+	.header_parent {
+		width: 100%;
+		height: 60px;
+		background-color: #4F81BD;
+		position: fixed;
+		z-index: 200;
+	}
+
+	.header_logo {
+		width: 50%;
+		height: 100%;
+		float: left;
+	}
+
+	.header_logo span {
+		width: 200px;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 32px;
+		color: #FFFFFF;
+		text-align: center;
+		height: 60px;
+		display: table-cell;
+		vertical-align: middle;
+		font-weight: 30px;
+	}
+
+	.notification_parent {
+		float: left;
+		height: 100%;
+		width: 50%;
+	}
+
+	.notification_alert {
+		color: #ffffff;
+		float: right;
+		margin-right: 20px;
+		margin-top: 20px;
+		font-size: 16px;
+	}
+
+	.notification_alert a {
+		color: #ffffff;
+		float: right;
+		font-size: 16px;
+		margin-left: 20px;
+	}
+
+	.content_parent {
+		position: absolute;
+		top: 60px;
+		bottom: 0px;
+		width: 100%;
+		
+	}
+
+	.navigation_parent {
+
+	}
+
+	.navigation_title {
+		background-color: #c0c0c0;
+		padding: 5px;
+		width: 150px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+		display: block;
+		border: 1px solid #000;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.navigation_entry {
+		width: 150px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 5px;
+		display: block;
+		text-align: center;
+		
+	}
+
+
+	.content {
+		padding: 20px;
+		display: flex;
+	}
+
+	.device_status_table td {
+		height: 10px;
+	}
+
+	.device_status_table tr {
+		padding-bottom: 10px;
+	}
+
+	.clear {
+		clear: both;
+		height: 1px;
+		overflow: hidden;
+		font-size: 0pt;
+		margin-top: -1px;
+	}
+
+	table {
+		
+		padding: 0px;
+		border-spacing: 0px;
+		border-collapse: collapse;
+		border: 1px solid #c0c0c0;
+		margin-left: 20px;
+	}
+	th {
+		border: 1px solid #000000;
+		background-color: #4F81BD;
+		color: #FFFFFF;
+	}
+	tr {
+		background-color: #ffffff;
+		height: 25px;
+		border: 1px solid #000000;
+	}
+	td, th {
+		border: 1px solid #000000;
+		padding: 5px;
+		font-size: 13px;
+	}
+
+	tr {
+		text-align: center;
+	}
+
+	#mainContent {
+		margin-bottom: 0px;
+		padding: 10px;
+		margin-bottom: 10px;
+		height: 100%;
+	}
+
+	#main_left {
+		float: left;
+		position: relative;
+		clear: both;
+	}
+	#main_right {
+		position: relative;
+		min-width: 400px;
+		margin-left: auto;
+		min-height: 500px;
+		padding-top: -10px;
+		display: block
+		
+	}
+
+	.cabinetStatus {
+		font-size: 20px;
+		margin-bottom: 3px;
+		line-height: 20px;
+	}
+
+	.issueAlert {
+		display: block; 
+		float: left; 
+		background-color: white; 
+		margin-bottom: 20px; 
+		border: 1px solid #c0c0c0; 
+		width: 350px; 
+		padding: 10px; 
+		margin-left: 20px; 
+		font-size: 14px;
+	}
